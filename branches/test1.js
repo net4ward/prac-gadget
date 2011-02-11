@@ -1,4 +1,4 @@
-﻿alert('test');
+﻿alert('test'); 
 
 function mafonction(x)
 {
