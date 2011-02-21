@@ -219,7 +219,7 @@ var html = ""; var sui = ""; var i; var i1; var i2; var T; var s; var c;
 
 var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
 
-hei = (hei - parseInt(pht) - 21) + "px"; alert(hei);
+hei = (hei - parseInt(pht) - 13) + "px"; alert(hei);
 
 document.getElementById("image_title").style.height=hei;
 
