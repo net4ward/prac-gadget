@@ -63,7 +63,7 @@ padding:0;
 {
 width: __UP_PWH__px;
 height: __UP_PHT__px;
-margin: 0 6px 0 0;
+margin: 0 0 6px 0;
 background-color: __UP_SCOL__;
 padding: 4px;
 }
@@ -97,8 +97,7 @@ text-decoration: underline;
 
 #image_title
 {
-margin-top: 3px;
-margin-bottom: 2px;
+margin-bottom: 3px;
 padding: 4px;
 text-align: left;
 overflow: hidden;
@@ -220,7 +219,7 @@ var html = ""; var sui = ""; var i; var i1; var i2; var T; var s; var c;
 
 var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
 
-hei = (hei - parseInt(pht) - 8 - 5) + "px"; 
+hei = (hei - parseInt(pht) - 21) + "px"; alert(hei);
 
 document.getElementById("image_title").style.height=hei;
 
