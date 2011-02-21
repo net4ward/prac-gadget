@@ -222,7 +222,7 @@ pht=parseInt(pht) + 8 + "px";
 
 var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
 
-hei = hei - pht - 8;
+hei = (hei - pht - 8) + "px";
 
 document.getElementById("image_title").style.height=hei;
 
