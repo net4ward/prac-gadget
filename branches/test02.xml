@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Module>
+<ModulePrefs title="Slideshow with 1 to 10 Last Post (Blogger)"
+title_url="http://www.liens-du-vin.ch/last-post-slideshow.htm"
+width="220"
+height="120"
+scrolling="false"
+directory_title="Slideshow with 1 to 10 Last Posts (Blogger)."
+description="Display the last posts of Blogger Blog. The slideshow contains the first picture within the post. Can define display and transition time. Display jpg, gif and png pictures. Random order available."
+screenshot="http://www.liens-du-vin.ch/_pic04/last-post-slideshow-screen.png"
+thumbnail="http://www.liens-du-vin.ch/_pic04/last-post-slideshow-thumb.png"
+author="Philippe Chappuis"
+author_email="info+gadgetCSE@liens-du-vin.ch"
+author_affiliation="Google"
+author_location="Rolle Switzerland"
+author_link="http://www.liens-du-vin.ch"
+author_photo="http://www.liens-du-vin.ch/_pic02/gadget-author-photo.png"
+author_aboutme="An Engineer who likes to develop for the Net and tastes wines"
+author_quote="A chief is a man who assumes responsibility. He says &quot;I was beaten&quot; he does not say &quot;My men were beaten&quot; - Antoine de Saint-Exupery">
+
+<Require feature="analytics" />
+
+</ModulePrefs>
+
+<UserPref name="NAME" display_name="Blog name" required="true" default_value="viti-vino-feed.blogspot.com" />
+<UserPref name="NBP" display_name="Number of post to display (1 - 10)" required="false" />
+<UserPref name="PDEF" display_name="Default picture" required="false" />
+<UserPref name="LEN" display_name="Length of text (1 - 512)" required="false" />
+
+<UserPref name="PWH" display_name="Width of pictures" required="true" default_value="120" />
+<UserPref name="PHT" display_name="Height of pictures" required="true" default_value="90" />
+
+<UserPref name="DTime" display_name="Display Time (ms)" required="false" />
+<UserPref name="TTime" display_name="Transition Time (ms)" required="false" />
+<UserPref name="RND" display_name="Random display (Yes - No)" required="false" />
+<UserPref name="CLP" display_name="Open Picture on Clic (Yes - No)" required="false" />
+<UserPref name="NAB" display_name="Display Navigation Bar (Yes - No)" required="false" />
+
+<UserPref name="TCOL" display_name="Color of Text" required="true" default_value="#000000" />
+<UserPref name="LCOL" display_name="Color of Link" required="false" />
+<UserPref name="SCOL" display_name="Background of Slideshow" required="true" default_value="#c3d9ff" />
+<UserPref name="BCOL" display_name="Color of Border" required="true" default_value="#f00" />
+<UserPref name="CCOL" display_name="Background of Container" required="true" default_value="#d1dae3" />
+
+<Content type="html"><![CDATA[
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script src="http://www.google.com/uds/solutions/slideshow/gfslideshow.js" type="text/javascript"></script>
+
+<style text="text/css">
+#temp
+{
+display: none;
+}
+
+body
+{
+background-color: __UP_CCOL__;
+margin: 0;
+padding:0;
+}
+
+#slide_box
+{
+width: __UP_PWH__px;
+height: __UP_PHT__px;
+margin: 0 6px 0 0;
+background-color: __UP_SCOL__;
+padding: 4px;
+}
+
+#slide_box a img
+{
+border: 0;
+}
+
+#main_box
+{
+color: __UP_TCOL__;
+font-size: 0.80em;
+font-weight: normal;
+font-family: Verdana, sans-serif;
+font-style: normal;
+border: 2px solid __UP_BCOL__;
+background-color: __UP_SCOL__;
+}
+
+
+#image_title a:link, #image_title a:visited
+{
+text-decoration: none;
+}
+
+#image_title a:hover
+{
+text-decoration: underline;
+}
+
+#image_title
+{
+margin-top: 3px;
+margin-bottom: 2px;
+padding: 4px;
+text-align: left;
+overflow: hidden;
+}
+
+#feed_title
+{
+display: none;
+}
+
+</style>
+
+<center><div id="main_box"><div id="feed_title"></div><div id="slide_box">Loading posts&hellip;</div><div id="image_title"></div></div></center>
+
+<script type="text/javascript">
+
+// parameters
+
+var prefs = new gadgets.Prefs();
+
+var s_fil = prefs.getString("NAME");
+
+var nbp="5";
+var s_nbp = prefs.getString("NBP");
+if (s_nbp)
+{
+if ((s_nbp < 1) | (s_nbp > 10)) s_nbp="5";
+nbp=s_nbp;
+}
+
+s_fil="http://" + s_fil + "/atom.xml?redirect=false&max-results=" + nbp;  
+
+var pdef="http://www.liens-du-vin.ch/ascreen.jpg";
+var s_pdef = prefs.getString("PDEF");
+if (s_pdef)
+{
+pdef=gadgets.util.escapeString(s_pdef);
+}
+
+var len="128";
+var s_len = prefs.getString("LEN");
+if (s_len)
+{
+if ((s_len < 1) | (s_len > 512)) s_len="128";
+len=s_len;
+}
+
+var pht = prefs.getString("PHT");
+
+var dti="4000";
+var s_dti = prefs.getString("DTime");
+if (s_dti)
+{
+if ((s_dti < 1000) | (s_dti > 12000)) dti="4000";
+dti=s_dti;
+}
+
+var tti="2000";
+var s_tti = prefs.getString("TTime");
+if (s_tti)
+{
+if ((s_tti < 500) | (s_tti > 6000)) tti="2000";
+tti=s_tti;
+}
+
+var rnd="N";
+var s_rnd = prefs.getString("RND");
+if (s_rnd)
+{
+s_rnd=s_rnd.toUpperCase();
+if (s_rnd.substr(0,1) == 'N')
+   {rnd="N";}
+else
+   {rnd="Y";}
+}
+
+var clp=null;
+var s_clp = prefs.getString("CLP");
+if (s_clp)
+{
+s_clp=s_clp.toUpperCase();
+if (s_clp.substr(0,1) == 'N')
+   {clp=null;}
+else
+   {clp="_blank";}
+}
+
+// navbar
+
+var nab=true;
+var s_nab = prefs.getString("NAB");
+if (s_nab)
+{
+s_nab=s_nab.toUpperCase();
+if (s_nab.substr(0,1) == 'N')
+   {nab=null;}
+else
+   {nab=true;}
+}
+
+// color text and link
+
+var s_tcol = prefs.getString("TCOL");
+
+var lcol="";
+var s_lcol = prefs.getString("LCOL");
+if (s_lcol)
+{lcol=s_lcol;}
+else
+{lcol=s_tcol;}
+
+// global var
+
+var reg=new RegExp("<.[^>]*>","gi");
+
+var html = ""; var sui = ""; var i; var i1; var i2; var T; var s; var c;
+
+pht=parseInt(pht) + 8 + "px"; 
+
+// fixe the height for text
+
+var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
+
+hei = hei - pht - 8;
+
+document.getElementById("image_title").style.height=hei;
+
+
+
+function load_feed()
+{
+var feed_input = s_fil;
+
+var options = {
+fullControlPanel: nab,
+fullControlPanelSmallIcons: nab,
+fullControlPanelFadeOutTime: 1000,
+pauseOnHover: false,
+scaleImages : true,
+displayTime: dti,
+transitionTime: tti,
+linkTarget: clp,
+feedLoadCallback: FeedTitle,
+thumbnailUrlResolver: UrlResolver,
+transitionCallback: TransitionHandler
+};
+
+
+if (rnd != "N") /* Random call */
+{
+  var processEntries = GFslideShow.prototype.processEntries;
+    GFslideShow.prototype.processEntries =
+      function(entries) {
+        for (var i=0, entry;  entry = entries[i];  i++) {
+          var j = Math.floor(Math.random() * entries.length);
+          var t = entries[j];
+          entries[j] = entries[i];
+          entries[i] = t;
+        }
+        processEntries.call(this, entries);
+      };
+ }
+
+
+new GFslideShow(feed_input, "slide_box", options);
+}
+
+// Find the title of the Feed
+
+function FeedTitle(result)
+{
+if ( result.error ) { alert("Error : " + result.error.message); }
+else
+{
+document.getElementById("feed_title").innerHTML=" ";
+}
+}
+
+// Find content of post
+
+function TransitionHandler(entry, transitionTime)
+{
+
+c = entry.content;
+
+// inserer espace si br
+
+T = c.split("<br>");
+s="";
+for (i=0; i<T.length;i++) {if (T[i]!=="") s=s + T[i] + " ";}
+c=s; 
+
+c = c.replace(reg,""); 
+
+if (c.length > len)
+{sui="&hellip;";}
+else
+{sui="";}
+
+c=c.substring(0,len);
+i=c.lastIndexOf(" ");
+c=c.substring(0,i);
+
+if (entry.title)
+{
+html = '<strong>' + entry.title + '</strong><br/> ' + c + sui + '<a href="' + entry.link + '" title="' + entry.title + '" style="color: ' + lcol + '" target="_blank">&raquo;&raquo;&raquo;</a>';
+
+}
+else
+{
+html = c + sui + "<a href='" + entry.link + "' title='" + entry.link + "' + style='color: " + lcol + "' target='_blank'>&raquo;&raquo;&raquo;</a>";
+}
+
+document.getElementById("image_title").innerHTML=html;
+
+}
+
+// image
+
+function UrlResolver (entry)
+{
+
+c=entry.content;
+
+i1=c.indexOf("<img ");
+if (i1==-1)
+{
+thumb=pdef;
+}
+else
+{
+i1 = c.indexOf("src=",i1+5)+5;
+i2= c.indexOf(">",i1+4);
+s=c.substring(i1,i2);
+
+i = s.toUpperCase().indexOf(".jpg".toUpperCase(),0);
+if (i==-1) {i=s.toUpperCase().indexOf(".gif".toUpperCase(),0);}  
+if (i==-1) {i=s.toUpperCase().indexOf(".png".toUpperCase(),0);}
+
+if (i==-1) 
+{
+thumb=pdef;
+}
+else
+{
+i2 = i + 4;  
+var thumb= s.substring(0,i2);
+}
+}
+return(thumb);    
+}        
+  
+google.load("feeds", "1");
+google.setOnLoadCallback(load_feed);
+
+_IG_Analytics("UA-442758-35", "/gg_slide_post");  
+
+</script>
+
+]]></Content>
+</Module>
