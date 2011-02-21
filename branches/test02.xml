@@ -216,13 +216,11 @@ var reg=new RegExp("<.[^>]*>","gi");
 
 var html = ""; var sui = ""; var i; var i1; var i2; var T; var s; var c;
 
-pht=parseInt(pht) + 8 + "px"; 
-
 // fixe the height for text
 
 var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
 
-hei = (hei - pht - 8) + "px";
+hei = (hei - parseInt(pht) - 8) + "px"; 
 
 document.getElementById("image_title").style.height=hei;
 
