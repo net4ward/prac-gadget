@@ -219,7 +219,14 @@ var html = ""; var sui = ""; var i; var i1; var i2; var T; var s; var c;
 
 var hei=(document.all) ? (window.document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight : window.innerHeight;
 
-hei = (hei - parseInt(pht) - 13) + "px"; alert(hei);
+
+alert(hei);
+
+alert(" main " + document.getElementById("main_box").style.height + " feed " + 
+document.getElementById("feed_title").style.height + " slide " + document.getElementById("slide_box").style.height + " title " + document.getElementById("image_title").style.height);
+
+
+hei = (hei - parseInt(pht) - 13) + "px"; 
 
 document.getElementById("image_title").style.height=hei;
 
