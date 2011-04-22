@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<playlist version="1" xmlns="http://xspf.org/ns/0/">
+    <title>Playlist PRAC</title>
+    <creator>Philippe Chappuis</creator>
+    <link>http://www.liens-du-vin.ch/</link>
+    <info>Essais Dewplayer Playlist</info>
+    <image>http://www.liens-du-vin.ch/_pic061/dewplayer-flash-player.png</image>
+
+    <trackList>
+
+        <track>
+          <location>http://www.liens-du-vin.ch/_files/thanks.mp3</location>
+          <creator>Philippe Chappuis</creator>
+          <album>Essais</album>
+          <title>Thanks</title>
+          <annotation>Texte remerciement</annotation>
+          <duration>5000</duration>
+          <image>http://www.liens-du-vin.ch/_pic061/dewplayer-flash-player.png</image>
+          <info>Merci de votre visite</info>
+          <link>http://viti-vino.blogspot.com/2009/06/sonoriser-ses-images-avec-dewplayer.html</link>
+        </track>
+        
+        <track>
+          <location>http://www.liens-du-vin.ch/_files/carl_orff_carmina_o_fortuna.mp3</location>
+          <creator>Carl Orff</creator>
+          <album>O Fortuna</album>
+          <title>Carmina Burana O Fortuna</title>
+          <annotation></annotation>
+          <duration>48000</duration>
+          <image>http://sites.google.com/site/annuairevin/files/carmina-burana.jpg</image>
+          <info></info>
+          <link>http://fr.wikipedia.org/wiki/Carmina_Burana_(cantate)</link>
+        </track>
+        
+        <track>
+          <location>http://www.liens-du-vin.ch/_files/bach_243_gloria_patri.mp3</location>
+          <creator>Bach Jean Sebastien</creator>
+          <album>MAGNIFICAT BWV234</album>
+          <title>Bach Gloria Patri</title>
+          <annotation></annotation>
+          <duration>30000</duration>
+          <image>http://sites.google.com/site/annuairevin/files/bach-243.jpg</image>
+          <info>Sonoriser ses images</info>
+          <link>http://www.liens-du-vin.ch/sonoriser-images.htm</link>
+        </track>
+        
+        <track>
+          <location>http://www.liens-du-vin.ch/_files/rossini_swiss_posthorn.mp3</location>
+          <creator>Rossini</creator>
+          <album>Rossini Swiss Post Horn</album>
+          <title>Rossini Swiss Post Horn</title>
+          <annotation></annotation>
+          <duration>64000</duration>
+          <image>http://sites.google.com/site/annuairevin/files/swiss_car.jpg</image>
+          <info>Jouer des fichiers MP3 sur son site</info>
+          <link>http://www.liens-du-vin.ch/playing-mp3-files.html</link>
+        </track>
+        
+        <track>
+          <location>http://www.liens-du-vin.ch/_files/mozart_req_dies_irae.mp3</location>
+          <creator>Mozart Wolfgang Amadeus</creator>
+          <album>Mozart Wolfgang Amadeus Dies Irae</album>
+          <title>Mozart Wolfgang Amadeus Dies Irae</title>
+          <annotation></annotation>
+          <duration>42000</duration>
+          <image>http://sites.google.com/site/annuairevin/files/mozart-dies-irae.jpg</image>
+          <info>Gadget Google Dewplayer Multi</info>
+          <link>http://www.liens-du-vin.ch/flash_dewplayer-multi-script.htm</link>
+        </track>
+
+       <track>
+          <location>http://sites.google.com/site/annuairevin/files/CDM-Operas_Aidachoeur.mp3</location>
+          <creator>Verdi Guiseppe</creator>
+          <album>Verdi Aida</album>
+          <title>Verdi Aida</title>
+          <annotation></annotation>
+          <duration>400000</duration>
+          <image>http://sites.google.com/site/annuairevin/files/aida-verdi.jpg</image>
+          <info>Des fichiers Mp3 sur Google Sites</info>
+          <link>http://sites.google.com/site/annuairevin/playing-sounds-in-google-sites</link>
+        </track>
+       
+     </trackList>
+</playlist>
